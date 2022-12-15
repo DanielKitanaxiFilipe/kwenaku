@@ -1,0 +1,85 @@
+.border-top-l{
+  border-top-left-radius: 0px !important;
+}
+.btn-tab-navLink{
+  padding: 7px;
+  font-size: 12px !important;
+  border-radius: 10px;
+}
+.btnRbl{
+  border-bottom-left-radius: 0px !important;
+}
+.btnRbr{
+  border-bottom-right-radius: 0px !important;
+}
+.card-table{
+  font-size: 12px !important;
+  .h-tablet{
+    overflow: auto;
+    min-height: 55vh;
+  }
+  .h-tablet-70{
+    overflow: auto;
+    min-height: 65vh;
+  }
+  .text-right{
+    text-align: right;
+  }
+  .card-body{
+    h6{
+      color: #111;
+      opacity: 1 !important;
+      margin-left: 10px;
+    }
+    .pagination{
+      h6{
+        font-size: 13px !important;
+      }
+      .btn-group{
+        margin-top: -10px;
+        margin-bottom: -10px;
+        .btn{
+          border: none !important;
+          opacity: 0.4;
+          &:hover{
+            opacity: 1;
+          }
+          font-size: 12px !important;
+          .icon-btn-pagination{
+            font-size: 18px !important;
+          }
+        }
+      }
+    }
+  }
+  
+  table{
+    thead{
+    background:#1c1e230c;
+    color: rgba(17, 17, 17, 0.501);
+    border-bottom: 0px solid #ffffff;
+    }
+    tbody{
+      tr{
+        border-bottom:  solid #1c1e230c !important;
+      }
+      td{
+        .icon-marg{
+          margin-top: -3px;
+          margin-bottom: -9px;
+          .hiOutlineEye-tab-link{
+            color: #111;
+            opacity: 0.5;
+            font-size: 15px;
+            margin-top: -10px;
+            margin-bottom: -10px;
+            &:hover{
+              opacity: 1;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+}
