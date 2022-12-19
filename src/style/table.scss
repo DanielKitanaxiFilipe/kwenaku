@@ -14,13 +14,33 @@
 }
 .card-table{
   font-size: 12px !important;
+  .input-group{
+    margin-top: -5px;
+    margin-bottom: -20px;
+    input{
+      font-size: 13px;
+      box-shadow: none !important;
+      outline: none !important;
+    }
+    .btn-search{
+      background: none;
+      border: none;
+      font-size: 15px;
+      color: rgba(17, 17, 17, 0.338);
+      transition: 0.3s;
+      &:hover{
+        color: rgb(17, 17, 17);
+      transition: 0.3s;
+      }
+    }
+  }
   .h-tablet{
     overflow: auto;
     min-height: 55vh;
   }
-  .h-tablet-70{
+  .h-tablet-80{
     overflow: auto;
-    min-height: 65vh;
+    min-height: 72vh;
   }
   .text-right{
     text-align: right;
@@ -64,6 +84,39 @@
         border-bottom:  solid #1c1e230c !important;
       }
       td{
+        img{
+          margin-top: -7px;
+          margin-bottom: -5px;
+        }
+        .link-tab-drop:hover{
+          background: #3e4149;
+          color: #fff;
+        }
+        .bg-primary{
+          padding-left: 10px;
+          padding-right: 10px;
+          color: #0d6efd !important;
+          background: #0d6dfd2e !important;
+          font-size: 8px; 
+        }
+        .btn-dropdown{
+          border: none;
+          background: none !important;
+          color: rgba(17, 17, 17, 0.397) !important;
+          margin-top: -12px;
+          margin-bottom: -10px;
+          box-sizing: none !important;
+          outline: none !important;
+          &:hover{
+            color: #111 !important;
+          }
+        }
+        .dropdown-menu{
+          border-radius: 10px;
+          border: none;
+          font-size: 14px!important;
+          box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.053)!important;
+        }
         .icon-marg{
           margin-top: -3px;
           margin-bottom: -9px;

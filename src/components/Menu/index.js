@@ -4,7 +4,7 @@ import { MenuData } from './MenuData';
 import logo from './../../assets/logo.svg'
 import SubMenu from './SubMenu';
 import { Container,Dropdown } from 'react-bootstrap';
-import { HiOutlineChat, HiOutlineUser } from 'react-icons/hi';
+import { HiOutlineChat, HiOutlineUser, HiOutlineDotsVertical } from 'react-icons/hi';
 import user from './../../assets/phots/userF.png'
 const SidebarNav = styled.nav`
   left: ${({ sidebar }) => (sidebar ? '0' : '-100%')};
@@ -43,9 +43,11 @@ const Menu = () => {
         </div>
         <div>
         <Dropdown>
-          <Dropdown.Toggle className='p-0 btn-dropdown' id="dropdown-basic"/>
+          <Dropdown.Toggle className='p-0 btn-dropdown' id="dropdown-basic">
+            <HiOutlineDotsVertical/>
+          </Dropdown.Toggle>
           <Dropdown.Menu className='shadow dropdown-menu'>
-            <Dropdown.Item className='dropdown-item' href="/">Perfil</Dropdown.Item>
+            <Dropdown.Item className='dropdown-item' href="/perfil">Perfil</Dropdown.Item>
             <Dropdown.Item href="/">Sair</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>

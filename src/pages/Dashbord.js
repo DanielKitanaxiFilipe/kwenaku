@@ -1,18 +1,90 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Cards } from '../components/Cards';
 import Menu from '../components/Menu';
+import BarChart from './../components/BarChart';
+import { ChartUser } from '../util/userChart'
+import { ChartCompany } from '../util/companyChart'
+import logoE from './../assets/default.jpg'
 import { 
   HiChevronLeft,
-  HiChevronRight 
+  HiChevronRight,
+  HiOutlineDotsVertical,
+  HiOutlineSearch,
+  HiOutlineDocumentText
 } from 'react-icons/hi';
 import { 
   Container,
   Row,
   Card,
-  Table
+  Dropdown,
+  Button,
+  Modal,
+  Col
 } from 'react-bootstrap';
+import listadeEmpresa from './../util/empresList.json'
 
 function Dashbord() {
+  const [showEliminar, setShowEliminar] = useState(false);
+  const eliminarClose = () => setShowEliminar(false);
+  const eliminarShow = () => setShowEliminar(true);
+
+  const [showEnviarSenha, setShowEnviarSenha] = useState(false);
+  const enviarSenhaClose = () => setShowEnviarSenha(false);
+  const enviarSenhaShow = () => setShowEnviarSenha(true);
+  const [empresLists, setempresLists] = useState ([]);
+
+  useEffect(() => {
+    
+    loadempresList();
+    console.log(empresLists)
+  })
+
+  async function loadempresList(){
+    await setempresLists(listadeEmpresa.empresList);
+  }
+
+  const [chartUser, setChartUser] = useState({
+    labels: ChartUser.map((data) => data.month),
+    datasets: [
+      {
+        label: "Usuarios",
+        data: ChartUser.map((data) => data.userGain),
+        backgroundColor: [
+          "#111",
+          "#7dce13",
+        ],
+        borderWidth: 0,
+        barPercentage: 0.5,
+        barThickness: 10,
+        maxBarThickness: 16,
+        minBarLength: 2,
+        borderRadius: 50,
+        data: [60, 20, 30, 60, 60, 50, 70, 50, 50, 70, 30, 30]
+      },
+    ],
+  });
+
+  const [chartCompany, setChartCompany] = useState({
+    labels: ChartCompany.map((data) => data.month),
+    datasets: [
+      {
+        label: "Empresas",
+        data: ChartCompany.map((data) => data.userGain),
+        backgroundColor: [
+          "#111",
+          "#7dce13",
+        ],
+        borderWidth: 0,
+        barPercentage: 0.5,
+        barThickness: 10,
+        maxBarThickness: 16,
+        minBarLength: 2,
+        borderRadius: 50,
+        data: [10, 5, 25, 20, 50, 30, 50, 70, 30, 70, 35, 20]
+      },
+    ],
+  });
+
   return <main className='dashbord d-flex'>
     <Menu/>
     <section className='h-100 w-100'>
@@ -21,10 +93,37 @@ function Dashbord() {
         <Row>
           <Cards/>
         </Row>
+        <div className="container p-0 mb-4">
+          <div className="row">
+            <div className="col-6">
+              <div className="card border-0">
+                <div className="card-body">
+                <BarChart chartData={chartUser} />
+                </div>
+              </div>
+            </div>
+            <div className="col-6">
+              <div className="card border-0">
+                <div className="card-body">
+                <BarChart chartData={chartCompany} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
         <Card className='card-table'>
             <Card.Body>
-              <div>
+              <div className='d-flex justify-content-between'>
                 <div><h6><b>Empresas</b></h6></div>
+                <div>
+                <div className="input-group input-group-sm border rounded">
+                  <input type="text" className="form-control border-0" placeholder="Pesquisar empresa" />
+                  <button className='btn-search'>
+                    <HiOutlineSearch/>
+                  </button>
+                </div>
+                </div>
               </div>
             </Card.Body>
              <div className='h-tablet'>
@@ -42,20 +141,34 @@ function Dashbord() {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td className='ps-4'>Logo</td>
-                    <td>Nome da empresa</td>
-                    <td>Email</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>Email</td>
-                    <td>Otto</td>
-                    <td className='pe-4 text-right'>@mdo</td>
+                {
+                empresLists?.map(empresList => (
+                <tr>
+                  <td className='ps-4 p-2'><img src={logoE} className="rounded" width={23} /></td>
+                  <td>{empresList.nome}</td>
+                  <td>{empresList.email}</td>
+                  <td>{empresList.telefone}</td>
+                  <td>{empresList.endereco}</td>
+                  <td>{empresList.numeroDeFeuncion}</td>
+                  <td><span class="badge rounded-pill bg-primary">Activo</span></td>
+                  <td className='text-right p-2 pe-4'>
+                  <Dropdown>
+                      <Dropdown.Toggle className='p-0 btn-dropdown' id="dropdown-basic">
+                        <HiOutlineDotsVertical/>
+                      </Dropdown.Toggle>
+                      <Dropdown.Menu>
+                        <Dropdown.Item className='link-tab-drop' onClick={enviarSenhaShow}>Redifinir senha</Dropdown.Item>
+                        <Dropdown.Item className='link-tab-drop' onClick={eliminarShow}>Eliminar</Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+                    </td>
                   </tr>
+                    ))
+                }
                 </tbody>
               </table>
              </div>
-            <Card.Body>
+            <Card.Body className='pt-0'>
               <div className='pagination d-flex justify-content-between'>
                 <div><h6><b>3 ate 10</b></h6></div>
                 <div className="btn-group" role="group" aria-label="Basic example">
@@ -67,6 +180,38 @@ function Dashbord() {
         </Card>
       </Container>
     </section>
+    {/*Modal*/}
+      <Modal show={showEliminar} size="sm" onHide={eliminarClose}>
+        <Modal.Body>
+          <div className='p-4 text-center pb-2'>
+            <b className='font-17'>Tem certeza que deseja elininar  essa informação</b>
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="light" onClick={eliminarClose}>
+            <b>Não</b>
+          </Button>
+          <Button variant="dark" onClick={eliminarClose}>
+            Sim
+          </Button>
+        </Modal.Footer>
+  </Modal>
+
+  <Modal show={showEnviarSenha} size="sm" onHide={enviarSenhaClose}>
+        <Modal.Body>
+        <div className='p-4 text-center pb-2'>
+            <b className='font-17'>Tem certeza que deseja alterar senha</b>
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="light" onClick={enviarSenhaClose}>
+            <b>Cancelar</b>
+          </Button>
+          <Button variant="dark" onClick={enviarSenhaClose}>
+            Reviar senha
+          </Button>
+        </Modal.Footer>
+  </Modal>
   </main>
 }
 export default Dashbord;

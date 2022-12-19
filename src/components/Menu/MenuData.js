@@ -9,12 +9,12 @@ export const MenuData = [
   },
   {
     title: 'Empresas',
-    path: '/',
+    path: '/empresa',
     icon: <HiIcon.HiOutlineOfficeBuilding className="icon-menu me-2"/>
   },
   {
     title: 'Usuarios',
-    path: '/',
+    path: '/usuario',
     icon: <HiIcon.HiOutlineUserGroup className="icon-menu me-2"/>
   }
 ];

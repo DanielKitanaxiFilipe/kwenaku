@@ -20,7 +20,7 @@ export function Cards() {
                   <h6><b>Empresas</b></h6>
                  <b>00</b>
                 </div>
-                <HiOutlineOfficeBuilding className='icon-card text-primary'/>
+                <HiOutlineOfficeBuilding className='icon-card text-secondary'/>
               </Card.Body>
             </Card>
           </Col>
@@ -31,7 +31,7 @@ export function Cards() {
                   <h6><b>Usuario</b></h6>
                  <b>00</b>
                 </div>
-                <HiOutlineUsers className='icon-card text-success'/>
+                <HiOutlineUsers className='icon-card text-secondary'/>
               </Card.Body>
             </Card>
           </Col>
@@ -42,7 +42,7 @@ export function Cards() {
                   <h6><b>Quadras</b></h6>
                  <b>00</b>
                 </div>
-                <HiOutlineViewGrid className='icon-card text-danger'/>
+                <HiOutlineViewGrid className='icon-card text-secondary'/>
               </Card.Body>
             </Card>
           </Col>
